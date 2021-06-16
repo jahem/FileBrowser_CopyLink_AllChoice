@@ -75,6 +75,7 @@ function copyText(text, callback){
         {
             if(!$(".list").hasClass("multiple")){
                 $("[title='选择多个']").trigger("click");
+                $("#multiple-selection").hide();
                 $(".list .item").not(".header").each(function(k,v){
                     $(this).trigger("click");
                 });

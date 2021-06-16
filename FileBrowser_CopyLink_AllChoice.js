@@ -13,7 +13,7 @@
  * @param {type} callback 回调
  */
 function copyText(text, callback){ 
-    var tag = document.createElement('input');
+    var tag = document.createElement('textarea');
     tag.setAttribute('id', 'cp_hgz_input');
     tag.value = text;
     document.getElementsByTagName('body')[0].appendChild(tag);
@@ -40,9 +40,6 @@ function copyText(text, callback){
         html += '<i class="material-icons">attachment</i><span>复制下载链接</span>';
         html += '</button>';
         $("#dropdown").append(html);
-        script.type="text/javascript"; 
-        script.src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"; 
-        document.getElementsByTagName('head')[0].appendChild(script); 
     };
     //复制下载链接
     var copyLink = function(){
@@ -53,15 +50,15 @@ function copyText(text, callback){
             var host = window.location.host;
             var data_dir = $(this).attr("data-dir");
             if(data_dir == true){
-                down_link += "http://" + host + "/api/raw/" + file_name + "?algo=zip&auth=" + auth + " \n ";
+                down_link += "http://" + host + "/api/raw/" + file_name + "?algo=zip&auth=" + auth + "\n";
             }else{
-                down_link += "http://" + host + "/api/raw/" + file_name + "?auth=" + auth + " \n ";
+                down_link += "http://" + host + "/api/raw/" + file_name + "?auth=" + auth + "\n";
             }
         });
         if(down_link == ""){
             alert("请选择下载文件后再复制");
         }else{
-            copyText( down_link, function (){alert('复制成功')})
+            copyText(down_link, function (){alert('复制成功')})
         }
     }
     //jq异步加载，0.5秒后执行

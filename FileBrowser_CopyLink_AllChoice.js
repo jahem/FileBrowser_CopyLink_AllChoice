@@ -63,7 +63,10 @@ function copyText(text, callback){
     }
     //jq异步加载，0.5秒后执行
     window.setTimeout(function(){
-        addButton();
+        var name = $(".credits a").eq(0).text();
+        if(name == "File Browser"){
+            addButton();
+        }
         $(document).on('click', '#copy-link-button', function()
         {
             copyLink();

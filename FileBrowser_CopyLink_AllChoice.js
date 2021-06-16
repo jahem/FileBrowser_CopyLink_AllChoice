@@ -33,11 +33,11 @@ function copyText(text, callback){
     //添加按钮
     var addButton = function() {
         var html = "";
-        html += '<button aria-label="复制下载链接" title="复制下载链接" id="copy-link-button" class="action" style="background:#ccc">';
-        html += '<i class="material-icons">content_copy</i><span>复制下载链接</span>';
+        html += '<button aria-label="全选" title="全选" id="all-choice" class="action" style="">';
+        html += '<i class="material-icons">done_all</i><span>全选</span>';
         html += '</button>';
-        html += '<button aria-label="全选" title="全选" id="all-choice" class="action" style="background:#ccc">';
-        html += '<i class="material-icons">check_circle</i><span>全选</span>';
+        html += '<button aria-label="复制下载链接" title="复制下载链接" id="copy-link-button" class="action" style="">';
+        html += '<i class="material-icons">attachment</i><span>复制下载链接</span>';
         html += '</button>';
         $("#dropdown").append(html);
         script.type="text/javascript"; 
@@ -58,7 +58,11 @@ function copyText(text, callback){
                 down_link += "http://" + host + "/api/raw/" + file_name + "?auth=" + auth + " \n ";
             }
         });
-        copyText( down_link, function (){console.log('复制成功')})
+        if(down_link == ""){
+            alert("请选择下载文件后再复制");
+        }else{
+            copyText( down_link, function (){alert('复制成功')})
+        }
     }
     //jq异步加载，0.5秒后执行
     window.setTimeout(function(){
@@ -69,10 +73,18 @@ function copyText(text, callback){
         });
         $(document).on('click', '#all-choice', function()
         {
-            $("[title='选择多个']").trigger("click");
-            $(".list .item").not(".header").each(function(k,v){
-                $(this).trigger("click");
-            });
+            if(!$(".list").hasClass("multiple")){
+                $("[title='选择多个']").trigger("click");
+                $(".list .item").not(".header").each(function(k,v){
+                    $(this).trigger("click");
+                });
+            }
+            else{
+                $("[title='清空']").trigger("click");
+                $(".list .item").not(".header").each(function(k,v){
+                    $(this).trigger("click");
+                });
+            }
         });
     },500);
 })();

@@ -47,12 +47,13 @@ function copyText(text, callback){
         $("[aria-selected=true]").each(function(k,v){
             var file_name = $(this).attr("aria-label");
             var auth = window.localStorage.getItem("jwt");
-            var host = window.location.host;
+            var href = window.location.href;
             var data_dir = $(this).attr("data-dir");
+            var host = href.replace('files','api/raw');
             if(data_dir == true){
-                down_link += "http://" + host + "/api/raw/" + file_name + "?algo=zip&auth=" + auth + "\n";
+                down_link += host + file_name + "?algo=zip&auth=" + auth + "\n";
             }else{
-                down_link += "http://" + host + "/api/raw/" + file_name + "?auth=" + auth + "\n";
+                down_link += host + file_name + "?auth=" + auth + "\n";
             }
         });
         if(down_link == ""){

@@ -24,11 +24,12 @@ function copyText(text, callback){
 }
 
 (function() {
+    'use strict';
     //加载jq，比较方便
-    var script=document.createElement("script"); 
-    script.type="text/javascript"; 
-    script.src="http://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"; 
-    document.getElementsByTagName('head')[0].appendChild(script); 
+    // var script=document.createElement("script"); 
+    // script.type="text/javascript"; 
+    // script.src="http://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"; 
+    // document.getElementsByTagName('head')[0].appendChild(script); 
 
     //添加按钮
     var addButton = function() {
@@ -59,11 +60,13 @@ function copyText(text, callback){
         if(down_link == ""){
             alert("请选择下载文件后再复制");
         }else{
-            copyText(down_link, function (){alert('复制成功')})
+            copyText(down_link, function (){
+                //alert('复制成功');
+            })
         }
     }
     //jq异步加载，0.5秒后执行
-    window.setTimeout(function(){
+    // window.setTimeout(function(){
         var name = $(".credits a").eq(0).text();
         if(name == "File Browser"){
             addButton();
@@ -88,6 +91,6 @@ function copyText(text, callback){
                 });
             }
         });
-    },500);
+    // },500);
 })();
 

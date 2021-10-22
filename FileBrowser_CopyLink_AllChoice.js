@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         FileBrowser 增加 批量复制下载地址和全选
+// @name         FileBrowser 增加批量操作
 // @namespace    https://github.com/jahem/FileBrowser_CopyLink_AllChoice.git
 // @version      0.2
 // @description  FileBrowser 增加 批量复制下载地址和全选
